@@ -6,5 +6,5 @@ implementors["ceph_rust"] = ["impl <a class=\"trait\" href=\"https://doc.rust-la
             } else {
                 window.pending_implementors = implementors;
             }
-        
+
 })()
