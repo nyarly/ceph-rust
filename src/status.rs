@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatus {
     health: CephStatusHealth,
     fsid: String,
@@ -25,7 +25,7 @@ pub struct CephStatus {
     mdsmap: CephStatusMDSMap,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusHealth {
     health: CephStatusHealth2,
     timechecks: CephStatusHealthTimeChecks,
@@ -34,17 +34,17 @@ pub struct CephStatusHealth {
     detail: Vec<CephStatusHealthDetail>,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusHealth2 {
     health: Vec<CephStatusHealthServices>,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusHealthServices {
     mons: Vec<CephStatusHealthServicesMon>,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusHealthServicesMon {
     name: String,
     kb_total: u32,
@@ -56,7 +56,7 @@ pub struct CephStatusHealthServicesMon {
     health: String,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusHealthServicesMonStats {
     bytes_total: u64,
     bytes_sst: u64,
@@ -65,7 +65,7 @@ pub struct CephStatusHealthServicesMonStats {
     last_updated: String,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusHealthTimeChecks {
     epoch: u32,
     round: u32,
@@ -73,7 +73,7 @@ pub struct CephStatusHealthTimeChecks {
     mons: Vec<CephStatusHealthMons>,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusHealthMons {
     name: String,
     skew: f32,
@@ -81,18 +81,18 @@ pub struct CephStatusHealthMons {
     health: String,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusHealthSummary {
     severity: String,
     summary: String,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusHealthDetail {
     dummy: String,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusMonMap {
     epoch: u32,
     fsid: String,
@@ -101,19 +101,19 @@ pub struct CephStatusMonMap {
     mons: Vec<CephStatusMonRank>,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusMonRank {
     rank: u16,
     name: String,
     addr: String,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusOSDMapH {
     osdmap: CephStatusOSDMapL,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusOSDMapL {
     epoch: u32,
     num_osds: u32,
@@ -124,7 +124,7 @@ pub struct CephStatusOSDMapL {
     num_remapped_pgs: u32,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusPGMap {
     pgs_by_state: Vec<CephStatusPGState>,
     version: u32,
@@ -135,13 +135,13 @@ pub struct CephStatusPGMap {
     bytes_total: u64,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusPGState {
     state_name: String,
     count: u32,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusMDSMap {
     epoch: u32,
     up: u32,
@@ -150,7 +150,7 @@ pub struct CephStatusMDSMap {
     by_rank: Vec<CephStatusMDSRank>,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct CephStatusMDSRank {
     rank: u16,
     name: String,
