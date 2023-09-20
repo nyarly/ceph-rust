@@ -95,18 +95,20 @@ pub enum ObjectStoreType {
 pub enum ObjectStoreMeta {
     Bluestore {
         bluefs: String,
-        bluefs_db_access_mode: String,
-        bluefs_db_block_size: String,
+        bluefs_dedicated_db: Option<String>, // pacific
+        bluefs_dedicated_wal: Option<String>, // pacific
+        bluefs_db_access_mode: Option<String>, // ~pacific
+        bluefs_db_block_size: Option<String>, // ~pacific
         bluefs_db_dev: Option<String>, //Not in Nautilous
-        bluefs_db_dev_node: String,
-        bluefs_db_driver: String,
+        bluefs_db_dev_node: Option<String>, // ~pacific
+        bluefs_db_driver: Option<String>, // ~pacific
         bluefs_db_model: Option<String>, //Not in Nautilous
-        bluefs_db_partition_path: String,
-        bluefs_db_rotational: String,
+        bluefs_db_partition_path: Option<String>, // ~pacific
+        bluefs_db_rotational: Option<String>, // ~pacific
         bluefs_db_serial: Option<String>, //Not in Nautilous
-        bluefs_db_size: String,
+        bluefs_db_size: Option<String>, // ~pacific
         bluefs_db_support_discard: Option<String>, //Nautilous
-        bluefs_db_type: String,
+        bluefs_db_type: Option<String>, // ~pacific
         bluefs_single_shared_device: String,
         bluefs_slow_access_mode: Option<String>, //Not in Nautilous
         bluefs_slow_block_size: Option<String>,  //Not in Nautilous
@@ -129,6 +131,7 @@ pub enum ObjectStoreMeta {
         bluefs_wal_serial: Option<String>,       //Not in Nautilous
         bluefs_wal_size: Option<String>,         //Not in Nautilous
         bluefs_wal_type: Option<String>,         //Not in Nautilous
+        bluestore_bdev_devices: Option<String>, // pacific
         bluestore_bdev_access_mode: String,
         bluestore_bdev_block_size: String,
         bluestore_bdev_dev: Option<String>, //Not in Nautilous

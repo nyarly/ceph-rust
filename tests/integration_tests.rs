@@ -2,7 +2,7 @@ extern crate ceph;
 extern crate serde;
 extern crate serde_json;
 
-use ceph::cmd::{ClusterHealth, CrushTree, MonStatus};
+use ceph::cmd::{ClusterHealth, CrushTree, MonStatus, OsdMetadata};
 use std::fs::File;
 use std::io::Read;
 
@@ -76,4 +76,16 @@ fn test_osd_tree_jewel() {
     };
     let tree: CrushTree = serde_json::from_str(&json).unwrap();
     println!("osd_tree: {:#?}", tree);
+}
+
+#[test]
+fn test_osd_metadata_pacific() {
+    let json = {
+        let mut buff = String::new();
+        let mut f = File::open("tests/osd_metadata_pacific").unwrap();
+        f.read_to_string(&mut buff).unwrap();
+        buff
+    };
+    let md: Vec<OsdMetadata> = serde_json::from_str(&json).unwrap();
+    println!("osd_metadata: {:#?}", md);
 }
