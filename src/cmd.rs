@@ -15,6 +15,8 @@ use std::fmt;
 use std::str::FromStr;
 use uuid::Uuid;
 
+use serde::de::{self, Deserialize, Deserializer, Unexpected};
+
 #[derive(Deserialize, Debug)]
 pub struct CephMon {
     pub rank: i64,
@@ -153,6 +155,34 @@ pub enum ObjectStoreMeta {
 }
 
 #[derive(Deserialize, Debug, Clone)]
+pub struct OsdInfo {
+    osd: u64,
+    uuid: String,
+    #[serde(deserialize_with = "bool_from_int")]
+    up: bool,
+    #[serde(deserialize_with = "bool_from_int")]
+    r#in: bool,
+    weight: f64,
+    #[serde(deserialize_with = "bool_from_int")]
+    primary_affinity: bool,
+    last_clean_begin: u64,
+    last_clean_end: u64,
+    up_from: u64,
+    up_thru: u64,
+    down_at: u64,
+    lost_at: u64,
+    public_addrs: Entity,
+    cluster_addrs: Entity,
+    heartbeat_back_addrs: Entity,
+    heartbeat_front_addrs: Entity,
+    public_addr: String,
+    cluster_addr: String,
+    heartbeat_back_addr: String,
+    heartbeat_front_addr: String,
+    state: Vec<String>,
+}
+
+#[derive(Deserialize, Debug, Clone)]
 pub struct OsdMetadata {
     pub id: u64,
     pub arch: String,
@@ -279,23 +309,23 @@ pub struct MonStatus {
     pub election_epoch: u64,
     pub quorum: Vec<u64>,
     pub outside_quorum: Vec<String>,
-    pub extra_probe_peers: Vec<ExtraProbePeer>,
+    pub extra_probe_peers: Vec<Entity>,
     pub sync_provider: Vec<u64>,
     pub monmap: MonMap,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 #[serde(untagged)]
-pub enum ExtraProbePeer {
+pub enum Entity {
     Present { addrvec: Vec<AddrVec> },
     Absent(String),
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct AddrVec {
     r#type: String,
     addr: String,
-    nonce: i32,
+    nonce: u64,
 }
 
 #[derive(Deserialize, Debug)]
@@ -740,6 +770,20 @@ impl fmt::Display for RoundStatus {
             RoundStatus::Finished => write!(f, "finished"),
             RoundStatus::OnGoing => write!(f, "on-going"),
         }
+    }
+}
+
+fn bool_from_int<'de, D>(deserializer: D) -> Result<bool, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    match u8::deserialize(deserializer)? {
+        0 => Ok(false),
+        1 => Ok(true),
+        other => Err(de::Error::invalid_value(
+            Unexpected::Unsigned(other as u64),
+            &"zero or one",
+        )),
     }
 }
 
@@ -1324,6 +1368,17 @@ pub fn mgr_metadata(cluster_handle: &Rados) -> RadosResult<Vec<MgrMetadata>> {
     }
     let cmd = json!({
         "prefix": "mgr metadata",
+    });
+
+    let result = cluster_handle.ceph_mon_command_without_data(&cmd)?;
+    let return_data = String::from_utf8(result.0)?;
+    Ok(serde_json::from_str(&return_data)?)
+}
+
+/// dump info for all osds
+pub fn osd_info(cluster_handle: &Rados) -> RadosResult<Vec<OsdInfo>> {
+    let cmd = json!({
+        "prefix": "osd info",
     });
 
     let result = cluster_handle.ceph_mon_command_without_data(&cmd)?;

@@ -313,6 +313,10 @@ impl CephClient {
         Ok(cmd::osd_metadata(&self.rados_t)?)
     }
 
+    pub fn osd_info(&self) -> Result<Vec<cmd::OsdInfo>, RadosError> {
+        Ok(cmd::osd_info(&self.rados_t)?)
+    }
+
     pub fn mgr_count_metadata(&self, property: &str) -> Result<HashMap<String, u64>, RadosError> {
         min_version!(Luminous, self);
         Ok(cmd::mgr_count_metadata(&self.rados_t, property)?)

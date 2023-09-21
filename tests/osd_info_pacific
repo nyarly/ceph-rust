@@ -1,0 +1,158 @@
+[
+  {
+    "osd": 0,
+    "uuid": "bce8bedc-c893-4871-ae59-41072cd8ed24",
+    "up": 1,
+    "in": 0,
+    "weight": 0,
+    "primary_affinity": 1,
+    "last_clean_begin": 0,
+    "last_clean_end": 0,
+    "up_from": 49751,
+    "up_thru": 49857,
+    "down_at": 0,
+    "lost_at": 0,
+    "public_addrs": {
+      "addrvec": [
+        {
+          "type": "v2",
+          "addr": "10.32.8.162:6800",
+          "nonce": 213376003
+        },
+        {
+          "type": "v1",
+          "addr": "10.32.8.162:6801",
+          "nonce": 213376003
+        }
+      ]
+    },
+    "cluster_addrs": {
+      "addrvec": [
+        {
+          "type": "v2",
+          "addr": "10.32.8.162:6802",
+          "nonce": 213376003
+        },
+        {
+          "type": "v1",
+          "addr": "10.32.8.162:6803",
+          "nonce": 213376003
+        }
+      ]
+    },
+    "heartbeat_back_addrs": {
+      "addrvec": [
+        {
+          "type": "v2",
+          "addr": "10.32.8.162:6806",
+          "nonce": 213376003
+        },
+        {
+          "type": "v1",
+          "addr": "10.32.8.162:6807",
+          "nonce": 213376003
+        }
+      ]
+    },
+    "heartbeat_front_addrs": {
+      "addrvec": [
+        {
+          "type": "v2",
+          "addr": "10.32.8.162:6804",
+          "nonce": 213376003
+        },
+        {
+          "type": "v1",
+          "addr": "10.32.8.162:6805",
+          "nonce": 213376003
+        }
+      ]
+    },
+    "public_addr": "10.32.8.162:6801/213376003",
+    "cluster_addr": "10.32.8.162:6803/213376003",
+    "heartbeat_back_addr": "10.32.8.162:6807/213376003",
+    "heartbeat_front_addr": "10.32.8.162:6805/213376003",
+    "state": [
+      "exists",
+      "up"
+    ]
+  },
+  {
+    "osd": 39,
+    "uuid": "b9ab9f8a-570d-4871-98b4-16f7289621b4",
+    "up": 1,
+    "in": 1,
+    "weight": 1,
+    "primary_affinity": 1,
+    "last_clean_begin": 48952,
+    "last_clean_end": 49157,
+    "up_from": 49169,
+    "up_thru": 49889,
+    "down_at": 49158,
+    "lost_at": 0,
+    "public_addrs": {
+      "addrvec": [
+        {
+          "type": "v2",
+          "addr": "10.32.24.16:6800",
+          "nonce": 2165915816
+        },
+        {
+          "type": "v1",
+          "addr": "10.32.24.16:6801",
+          "nonce": 2165915816
+        }
+      ]
+    },
+    "cluster_addrs": {
+      "addrvec": [
+        {
+          "type": "v2",
+          "addr": "10.32.24.16:6802",
+          "nonce": 2165915816
+        },
+        {
+          "type": "v1",
+          "addr": "10.32.24.16:6803",
+          "nonce": 2165915816
+        }
+      ]
+    },
+    "heartbeat_back_addrs": {
+      "addrvec": [
+        {
+          "type": "v2",
+          "addr": "10.32.24.16:6806",
+          "nonce": 2165915816
+        },
+        {
+          "type": "v1",
+          "addr": "10.32.24.16:6807",
+          "nonce": 2165915816
+        }
+      ]
+    },
+    "heartbeat_front_addrs": {
+      "addrvec": [
+        {
+          "type": "v2",
+          "addr": "10.32.24.16:6804",
+          "nonce": 2165915816
+        },
+        {
+          "type": "v1",
+          "addr": "10.32.24.16:6805",
+          "nonce": 2165915816
+        }
+      ]
+    },
+    "public_addr": "10.32.24.16:6801/2165915816",
+    "cluster_addr": "10.32.24.16:6803/2165915816",
+    "heartbeat_back_addr": "10.32.24.16:6807/2165915816",
+    "heartbeat_front_addr": "10.32.24.16:6805/2165915816",
+    "state": [
+      "exists",
+      "up"
+    ]
+  }
+]
