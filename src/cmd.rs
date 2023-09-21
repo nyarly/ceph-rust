@@ -156,30 +156,30 @@ pub enum ObjectStoreMeta {
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct OsdInfo {
-    osd: u64,
-    uuid: String,
+    pub osd: u64,
+    pub uuid: String,
     #[serde(deserialize_with = "bool_from_int")]
-    up: bool,
+    pub up: bool,
     #[serde(deserialize_with = "bool_from_int")]
-    r#in: bool,
-    weight: f64,
+    pub r#in: bool,
+    pub weight: f64,
     #[serde(deserialize_with = "bool_from_int")]
-    primary_affinity: bool,
-    last_clean_begin: u64,
-    last_clean_end: u64,
-    up_from: u64,
-    up_thru: u64,
-    down_at: u64,
-    lost_at: u64,
-    public_addrs: Entity,
-    cluster_addrs: Entity,
-    heartbeat_back_addrs: Entity,
-    heartbeat_front_addrs: Entity,
-    public_addr: String,
-    cluster_addr: String,
-    heartbeat_back_addr: String,
-    heartbeat_front_addr: String,
-    state: Vec<String>,
+    pub primary_affinity: bool,
+    pub last_clean_begin: u64,
+    pub last_clean_end: u64,
+    pub up_from: u64,
+    pub up_thru: u64,
+    pub down_at: u64,
+    pub lost_at: u64,
+    pub public_addrs: Entity,
+    pub cluster_addrs: Entity,
+    pub heartbeat_back_addrs: Entity,
+    pub heartbeat_front_addrs: Entity,
+    pub public_addr: String,
+    pub cluster_addr: String,
+    pub heartbeat_back_addr: String,
+    pub heartbeat_front_addr: String,
+    pub state: Vec<String>,
 }
 
 #[derive(Deserialize, Debug, Clone)]
