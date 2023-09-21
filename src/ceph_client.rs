@@ -71,7 +71,7 @@ impl CephClient {
         let osd_id = osd_id.to_string();
         let cmd = MonCommand::new()
             .with_prefix("osd out")
-            .with("ids", &osd_id);
+            .with("ids", vec![&osd_id]);
 
         if !self.simulate {
             self.run_command(cmd)?;
