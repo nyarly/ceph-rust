@@ -1379,6 +1379,7 @@ pub fn mgr_metadata(cluster_handle: &Rados) -> RadosResult<Vec<MgrMetadata>> {
 pub fn osd_info(cluster_handle: &Rados) -> RadosResult<Vec<OsdInfo>> {
     let cmd = json!({
         "prefix": "osd info",
+        "format": "json"
     });
 
     let result = cluster_handle.ceph_mon_command_without_data(&cmd)?;
