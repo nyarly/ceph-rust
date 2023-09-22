@@ -43,7 +43,7 @@ pub struct CrushNode {
 #[derive(Deserialize, Debug)]
 pub struct CrushTree {
     pub nodes: Vec<CrushNode>,
-    pub stray: Vec<String>,
+    pub stray: Vec<CrushNode>,
 }
 
 #[derive(Deserialize, Debug, Clone)]

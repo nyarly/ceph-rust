@@ -79,6 +79,19 @@ fn test_osd_tree_jewel() {
 }
 
 #[test]
+fn test_osd_tree_pacific() {
+    let json = {
+        let mut buff = String::new();
+        let mut f = File::open("tests/osd_tree_pacific").unwrap();
+        f.read_to_string(&mut buff).unwrap();
+        buff
+    };
+    let tree: CrushTree = serde_json::from_str(&json).unwrap();
+    println!("osd_tree: {:#?}", tree);
+}
+
+
+#[test]
 fn test_osd_metadata_pacific() {
     let json = {
         let mut buff = String::new();
