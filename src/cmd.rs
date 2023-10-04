@@ -1251,6 +1251,24 @@ pub fn auth_get_key(cluster_handle: &Rados, client_type: &str, id: &str) -> Rado
     }
 }
 
+pub fn auth_list(cluster_handle: &Rados) -> RadosResult<String> {
+    let cmd = json!({
+        "prefix": "auth ls",
+        "format": "json"
+    });
+
+    let result = cluster_handle.ceph_mon_command_without_data(&cmd)?;
+    let return_data = String::from_utf8(result.0)?;
+    let mut l = return_data.lines();
+    match l.next() {
+        Some(key) => Ok(key.into()),
+        None => Err(RadosError::Error(format!(
+            "Unable to parse auth ls: {:?}",
+            return_data,
+        ))),
+    }
+}
+
 // ceph osd crush add {id-or-name} {weight}  [{bucket-type}={bucket-name} ...]
 /// add or update crushmap position and weight for an osd
 pub fn osd_crush_add(

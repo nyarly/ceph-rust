@@ -229,6 +229,10 @@ impl CephClient {
         Ok(cmd::osd_auth_add(&self.rados_t, osd_id, self.simulate)?)
     }
 
+    pub fn auth_list(&self) -> Result<String, RadosError> {
+        Ok(cmd::auth_list(&self.rados_t)?)
+    }
+
     /// Get a ceph-x key.  The id parameter can be either a number or a string
     /// depending on the type of client so I went with string.
     pub fn auth_get_key(&self, client_type: &str, id: &str) -> Result<String, RadosError> {
